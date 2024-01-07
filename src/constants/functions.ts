@@ -1,4 +1,4 @@
-import * as fs from 'fs';
+
 
 
 export function formatDuration(duration: number): string {
@@ -58,38 +58,38 @@ export const loadJSON = async () => {
   }
 }
 
-export const saveAnsweredQuestionJSON = async (answers: number, quizId: number) => {
-  try {
-    const jsonData = await loadJSON();
+// export const saveAnsweredQuestionJSON = async (answers: number, quizId: number) => {
+//   try {
+//     const jsonData = await loadJSON();
 
-    const apiUrl = `https://json.extendsclass.com/bin/e48f43d26d12`;
+//     const apiUrl = `https://json.extendsclass.com/bin/e48f43d26d12`;
 
-    const updatedQuizzes = jsonData.quizzes.map((quiz: any) => {
-      if (quiz.id === quizId) {
-        quiz.answered = answers;
-        console.log(quiz)
-      }
-      return quiz;
-    });
+//     const updatedQuizzes = jsonData.quizzes.map((quiz: any) => {
+//       if (quiz.id === quizId) {
+//         quiz.answered = answers;
+//         console.log(quiz)
+//       }
+//       return quiz;
+//     });
 
 
-    const updatedData = { ...jsonData, quizzes: updatedQuizzes };
+//     const updatedData = { ...jsonData, quizzes: updatedQuizzes };
 
-    // Atualiza o estado localmente (opcional, dependendo de como você deseja lidar com isso)
+//     // Atualiza o estado localmente (opcional, dependendo de como você deseja lidar com isso)
 
-    // Enviando alterações de volta para a API
-    const saveResponse = await fetch(apiUrl, {
-      method: 'PUT', // Use 'PUT' para atualizações, ajuste conforme necessário
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(updatedData),
-    });
+//     // Enviando alterações de volta para a API
+//     const saveResponse = await fetch(apiUrl, {
+//       method: 'PUT', // Use 'PUT' para atualizações, ajuste conforme necessário
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify(updatedData),
+//     });
 
-    if (!saveResponse.ok) {
-      console.error('Erro ao salvar dados:', saveResponse.statusText);
-    }
-  } catch (error) {
-    console.error('Erro ao processar alterações:', error);
-  }
-};
+//     if (!saveResponse.ok) {
+//       console.error('Erro ao salvar dados:', saveResponse.statusText);
+//     }
+//   } catch (error) {
+//     console.error('Erro ao processar alterações:', error);
+//   }
+// };

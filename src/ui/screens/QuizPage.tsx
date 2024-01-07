@@ -9,7 +9,6 @@ import QuestionIcon from'../../assets/icons/question.svg';
 import ClockIcon from '../../assets/icons/clock.svg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
-import { formatDuration, percentageCalculation, saveAnsweredQuestionJSON } from '../../constants/functions';
 import Button from '../../components/button/Button';
 import Timer from '../../components/timer/Timer';
 import PercentageBar from '../../components/percentage-bar/PercentageBar';
@@ -18,6 +17,9 @@ import QuizOption from '../../components/quiz-option/QuizOption';
 import quizesData from '../../constants/quizes.json';
 
 import { useJsonManager } from '../../hooks/useJsonManager';
+import { formatDuration, percentageCalculation } from '../../constants/functions';
+
+import { loadDatabaseFile, updateAnswersQuiz, updateRecentQuizzes} from '../../constants/firebase';
 
 const QuizPage: React.FC = () => {
 
@@ -29,8 +31,8 @@ const percentageBarQuizColor = "#21BDCA";
 
 // const quizes = quizesData.quizzes;
 
-const quizDatabase = "https://json.extendsclass.com/bin/e48f43d26d12"
-const recentQuizDatabase = "https://json.extendsclass.com/bin/31809eb5fda6"
+const quizDatabase = "hhttps://afonsonavarini.github.io/json-storage/quizes.json"
+const recentQuizDatabase = "https://afonsonavarini.github.io/json-storage/quizes.json"
 
 
 const [quizes, setQuizes] = useState({})
@@ -40,27 +42,34 @@ const [resetStyles, setResetStyles] = useState(false);
 const [totalAnswered, setTotalAnswered] = useState(quiz.answered)
 const [correctAnswers, setCorrectAnswers] = useState(0)
 const [correctValidation, setCorrectValidation] = useState(false)
+const [recentQuizzes, setRecentQuizzes] = useState({})
 const [data, setData] = useState(null);
-const {loadJSONInfo, saveAnsweredQuestion, saveRecentQuiz} = useJsonManager()
+
+// const {loadJSONInfo, saveAnsweredQuestion, saveRecentQuiz} = useJsonManager()
 
 useEffect(() => {
   async function loadQuizes() {
-    const quizesData = await loadJSONInfo(quizDatabase)
+    const quizesData = await loadDatabaseFile('/quizzes')
+    const recentQuizzesData = await loadDatabaseFile('/recentQuizes')
     setQuizes(quizesData.quizzes)
-    saveRecentQuiz(quiz, recentQuizDatabase)
+    setRecentQuizzes(recentQuizzesData)
+
+    // saveRecentQuiz(quiz, recentQuizDatabase)
   }
   loadQuizes()
-})
+},[])
+
 
   const duration = formatDuration(quiz.duration)
 
   const percentage = percentageCalculation(correctAnswers, quiz.questions.length)
+  
 
   function onClickGoBack() {
     navigate(-1)
   }
 
-  const handleNextQuestion = () => {
+  async function handleNextQuestion() {
     if (currentQuestionIndex < quiz.questions.length - 1) {
       setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
       setCorrectOptionIndex(null);
@@ -68,6 +77,8 @@ useEffect(() => {
       setTotalAnswered(totalAnswered + 1)
       setCorrectValidation(false)
     } else {
+        await updateRecentQuizzes(quiz, "/recentQuizes")
+        console.log("updated")
         navigate("/");
     }
   };
@@ -81,24 +92,20 @@ useEffect(() => {
     }
   };
 
-  const handleOptionClick = (isCorrect: boolean, optionIndex: number) => {
+  async function handleOptionClick(isCorrect: boolean, optionIndex: number){
     if (!isCorrect) {
       setCorrectOptionIndex(currentQuestion.options.findIndex((opt: string) => opt === currentQuestion.correct_answer));
     } else {
       if (correctValidation !== true) {
         setCorrectAnswers(correctAnswers + 1)
+        await updateAnswersQuiz(quiz, correctAnswers + 1, "/quizzes")
         setCorrectValidation(true)
-        console.log('eae')
       }
     }
     setResetStyles(false);
   };
 
   const currentQuestion = quiz.questions[currentQuestionIndex];
-
-  useEffect(() => {
-    saveAnsweredQuestion(correctAnswers, quiz.id, quizDatabase)
-  }, [correctAnswers])
 
 
   return <div className='phone-screen-size container'>

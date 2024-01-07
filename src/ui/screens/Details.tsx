@@ -13,6 +13,9 @@ import { formatDuration } from '../../constants/functions';
 import Button from '../../components/button/Button';
 import {faArrowLeft, faEllipsisV, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 
+import { loadDatabaseFile, lerDados} from '../../constants/firebase';
+
+
 const Details: React.FC = () => {
 
   const location = useLocation();
@@ -21,13 +24,15 @@ const Details: React.FC = () => {
   
   const quiz = location.state?.quiz;
 
+
+
   const duration = formatDuration(quiz.duration)
 
   function onClickGoBack() {
     navigate(-1)
   }
 
-  const handleButtonClick = (quiz: object) => {
+  async function handleButtonClick(quiz: object){
     navigate('/quiz', { state: { quiz } });
   };
 

@@ -8,16 +8,17 @@ import { useNavigate } from 'react-router-dom';
 import { useJsonManager } from '../../hooks/useJsonManager';
 
 
-// import quizesData from '../../constants/quizes.json';
+import quizesDataLocal from '../../constants/quizes.json';
 import recentQuizesData from '../../constants/recentQuizes.json';
+import { loadDatabaseFile, lerDados } from '../../constants/firebase';
 
 const POPULAR_QUIZ_MAXRENDER_NUMBER = 3;
 
-const quizDatabase = "https://json.extendsclass.com/bin/e48f43d26d12"
-const recentQuizesDatabase = "https://json.extendsclass.com/bin/31809eb5fda6"
+const quizDatabase = "https://afonsonavarini.github.io/json-storage/quizes.json"
+const recentQuizesDatabase = "https://afonsonavarini.github.io/json-storage/recentQuizes.json"
 
 const Home: React.FC = () => {
-  const [recentQuizes, setRecentQuizes] = useState(recentQuizesData.recentQuizes);
+  const [recentQuizes, setRecentQuizes] = useState({});
   const [quizesData, setQuizesData] = useState({})
   const [displayedQuizes, setDisplayedQuizes] = useState<any[]>([]);
   const [displayedRecentQuizes, setDisplayedRecentQuizes] = useState<any[]>([]);
@@ -28,25 +29,29 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     async function loadQuizes() {
-      const quizesDataJSON = await loadJSONInfo(quizDatabase)
-      const recentQuizesDataJSON = await loadJSONInfo(recentQuizesDatabase)
-      console.log(recentQuizesDataJSON)
-      setQuizesData(quizesDataJSON)
-      setDisplayedQuizes(quizesDataJSON.quizzes)
-      setDisplayedRecentQuizes(recentQuizesDataJSON.recentQuizes)
-      renderRecentQuizzes()
-      renderPopularQuizzes(POPULAR_QUIZ_MAXRENDER_NUMBER)
+        const databaseQuizzesData = await loadDatabaseFile('/quizzes');
+        const databaseRecentQuizzesData = await loadDatabaseFile('/recentQuizes');
+        setQuizesData(databaseQuizzesData);
+        setRecentQuizes(databaseRecentQuizzesData);
+        setDisplayedQuizes(databaseQuizzesData);
+        setDisplayedRecentQuizes(databaseRecentQuizzesData)
     }
-    loadQuizes()
-    console.log(quizesData)
-  })
+  
+    loadQuizes();
+  }, []);
 
   const renderRecentQuizzes = () => {
+    // Filtra os quizzes recentes com base nos IDs em displayedRecentQuizes
+    const recentesFiltrados = displayedRecentQuizes.map(recent => {
+      const quizCorrespondente = displayedQuizes.find(quiz => quiz.id === recent.id);
+      return quizCorrespondente;
+    }).filter(Boolean); // Filtra para remover valores nulos ou undefined
+  
     return (
       <div className='section-box'>
         <p className='section-title'>Recent Quiz</p>
         <div className='recent-quizes-box'>
-          {displayedRecentQuizes.map((quiz, index) => (
+          {recentesFiltrados.map((quiz, index) => (
             <RecentQuiz
               key={index}
               title={quiz.title}
