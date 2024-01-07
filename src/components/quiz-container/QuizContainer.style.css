@@ -1,0 +1,28 @@
+.quiz-container-main {
+    height: 100px;
+    width: 100%;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 10px 24px 54px 0px #33333308;
+    margin-bottom: 10px;
+}
+
+.quiz-container-main:hover {
+    background-color: #E1F2FF;
+}
+
+.quiz-first-content {
+    width: 100%; /* 50% */
+    height: 100%; /* 65% */
+    padding-left: 20px; /* padding-left: 5px; */
+    display: flex;
+    /* justify-content: space-around; */
+    align-items: center;
+}
+
+.quiz-second-content {
+    display: flex;
+    padding-right: 20px;
+}

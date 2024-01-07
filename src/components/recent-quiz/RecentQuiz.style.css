@@ -1,0 +1,34 @@
+.recent-quiz-main {
+    width: 140px;
+    height: 140px;
+    background-color: #FAFAFD;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.recent-quiz-main:hover {
+    background-color: #E1F2FF;
+}
+
+.icon-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+}
+
+.recent-quiz-info {
+    width: 110%;
+}
+
+.recent-quiz-icon {
+    width: 50%;
+    height: 50%;
+}
+
+.quiz-title {
+    font-weight: bold;
+}

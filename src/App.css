@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Nunito', sans-serif;
+  background-color: rgb(46, 46, 46);
+}
+
+.container {
+  padding-left: 20px;
+  padding-right: 20px;
+
+}
+
+.phone-screen-size {
+  width: 375px;
+  height: 900px;
+  background-color: #f8f8f8;
+  display: flex;
+  flex-direction: column;
+}

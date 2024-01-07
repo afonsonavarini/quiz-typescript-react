@@ -1,0 +1,29 @@
+
+
+
+.section-title {
+    color: #999999;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.section-box {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.recent-quizes-box {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.popular-quizes-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 100%;
+    height: 100%;
+}
