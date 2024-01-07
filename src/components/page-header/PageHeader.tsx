@@ -12,8 +12,12 @@ interface PageHeaderProps {
 const PageHeader: FunctionComponent<PageHeaderProps> = ({title, onClick, children}) => {
     return <div className="page-header-main">
             <div className="page-header-info-section">
-                <FontAwesomeIcon icon={faChevronLeft} className="icon-hover" onClick={onClick}/>
-                <h3 id="page-header-title">{title}</h3>
+                <div className="icon-container-go-back">
+                    <FontAwesomeIcon icon={faChevronLeft} className="icon-hover-go-back" onClick={onClick}/>
+                </div>
+                <div className="page-header-container">
+                    <h3 id="page-header-title">{title}</h3>
+                </div>
             </div>
             <div className="page-header-button-section">
                 {children}

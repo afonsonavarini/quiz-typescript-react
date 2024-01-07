@@ -28,6 +28,11 @@ const Details: React.FC = () => {
 
   const duration = formatDuration(quiz.duration)
 
+  function onIconClick() {
+    localStorage.setItem("notification", `${quiz.title} quiz reset.`);
+    navigate('/');
+  }
+
   function onClickGoBack() {
     navigate(-1)
   }
@@ -42,7 +47,9 @@ const Details: React.FC = () => {
               title='Detail Quiz'
               onClick={() => onClickGoBack()}
           >
-            <FontAwesomeIcon icon={faEllipsisV} className="icon-hover" />
+            <div className="icon-container">
+              <FontAwesomeIcon icon={faEllipsisV} className="icon-hover" onClick={onIconClick}/>
+            </div>
           </PageHeader>
           <PopularQuiz
               title={quiz.title}

@@ -9,7 +9,8 @@
 .page-header-info-section {
     display: flex;
     align-items: center;
-    width: 50%;
+    justify-content: space-between;
+    width: 100%;
     height: 100%;
 }
 
@@ -24,4 +25,28 @@
 #page-header-title {
     margin-left: 40px;
     font-size: 20px;
+}
+
+.page-header-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-left: -20px;
+    width: 90%;
+    height: 100%;
+}
+
+
+.icon-container-go-back {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+   padding: 10px;
+}
+
+.icon-container-go-back:hover {
+   background-color: #CCE9FF
 }

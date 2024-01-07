@@ -1,11 +1,12 @@
 .result-box-main {
+    position: relative;
     display: flex;
     justify-content: center;
     width: 100%;
     height: 18%;
     border-radius: 10px;
-    
-}
+    margin-bottom: -20px;
+  }
 
 .result-box-content:hover {
     background-color: #cce9ff;
@@ -20,3 +21,67 @@
     border-radius: 10px;
     background-color: #E1F2FF;
 }
+
+.circle {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: linear-gradient(194.34deg, rgba(255, 255, 255, 0.5) 21.08%, rgba(255, 255, 255, 0) 89.82%, rgba(255, 255, 255, 0) 89.82%);
+  }
+
+  .center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    background-color: #E1F2FF;
+    border-radius: 50%;
+  }
+
+  #first-left-circle {
+    transform: translate(-135%, -50%) rotate(180deg);
+    clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
+  }
+  
+  #first-right-circle {
+    transform: translate(163%, 74%);
+    clip-path: polygon(0 0, 75% 0, 75% 100%, 0 100%);
+  }
+
+  .center-right{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    background-color: #E1F2FF;
+    border-radius: 50%;
+    clip-path: polygon(0 0, 100% 0, 100% 50%, 50% 50%, 0 50%);
+  }
+
+  .feedback-container {
+    color: #4E5C66;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+
+  .feedback-title {
+    margin-bottom: -20px;
+    
+  }
+
+  .feedback-description {
+    width: 80%;
+    font-size: 14px;
+  }
+
+  .circular-container {
+    z-index: 1;
+  }

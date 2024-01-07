@@ -43,7 +43,7 @@ const [totalAnswered, setTotalAnswered] = useState(quiz.answered)
 const [correctAnswers, setCorrectAnswers] = useState(0)
 const [correctValidation, setCorrectValidation] = useState(false)
 const [recentQuizzes, setRecentQuizzes] = useState({})
-const [data, setData] = useState(null);
+const [notification, setNotification] = useState("");
 
 // const {loadJSONInfo, saveAnsweredQuestion, saveRecentQuiz} = useJsonManager()
 
@@ -63,6 +63,7 @@ useEffect(() => {
   const duration = formatDuration(quiz.duration)
 
   const percentage = percentageCalculation(correctAnswers, quiz.questions.length)
+
   
 
   function onClickGoBack() {
@@ -79,7 +80,9 @@ useEffect(() => {
     } else {
         await updateRecentQuizzes(quiz, "/recentQuizes")
         console.log("updated")
-        navigate("/");
+        const currentPercentageCompleted = percentageCalculation(correctAnswers, quiz.questions.length)
+        localStorage.setItem("notification", `${quiz.title} ${currentPercentageCompleted}% done last try.`);
+        navigate('/', { state: { notification } });
     }
   };
 

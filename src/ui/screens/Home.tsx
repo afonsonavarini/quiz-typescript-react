@@ -4,13 +4,14 @@ import UserBox from '../../components/user-box/UserBox';
 import ResultBox from '../../components/result-box/ResultBox';
 import RecentQuiz from '../../components/recent-quiz/RecentQuiz';
 import PopularQuiz from '../../components/popular-quiz/PopularQuiz';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useJsonManager } from '../../hooks/useJsonManager';
 
 
 import quizesDataLocal from '../../constants/quizes.json';
 import recentQuizesData from '../../constants/recentQuizes.json';
 import { loadDatabaseFile, lerDados } from '../../constants/firebase';
+import { percentageCalculation } from '../../constants/functions';
 
 const POPULAR_QUIZ_MAXRENDER_NUMBER = 3;
 
@@ -22,9 +23,20 @@ const Home: React.FC = () => {
   const [quizesData, setQuizesData] = useState({})
   const [displayedQuizes, setDisplayedQuizes] = useState<any[]>([]);
   const [displayedRecentQuizes, setDisplayedRecentQuizes] = useState<any[]>([]);
+  const [percentageCompleted, setPercentageCompleted] = useState(0)
+  const [notificationHome, setNotificationHome] = useState('')
 
   const {loadJSONInfo} = useJsonManager()
+  const location = useLocation();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const notification = localStorage.getItem("notification");
+    if (notification) {
+      setNotificationHome(notification)
+      localStorage.removeItem("notification");
+    }
+  }, []);
 
 
   useEffect(() => {
@@ -35,6 +47,13 @@ const Home: React.FC = () => {
         setRecentQuizes(databaseRecentQuizzesData);
         setDisplayedQuizes(databaseQuizzesData);
         setDisplayedRecentQuizes(databaseRecentQuizzesData)
+        const totalAnswered = databaseQuizzesData.reduce((acc: any, quiz: any) => acc + quiz.answered, 0);
+        const totalQuestions = databaseQuizzesData.reduce((acc: any, quiz: any) => acc + quiz.questions.length, 0);
+      
+      
+        const totalFinished = percentageCalculation(totalAnswered, totalQuestions)
+        setPercentageCompleted(totalFinished * -1)
+        console.log(percentageCompleted)
     }
   
     loadQuizes();
@@ -96,8 +115,8 @@ const Home: React.FC = () => {
   };
 
   return <div className='phone-screen-size container'>
-          <UserBox username='Jessica' />
-          <ResultBox />
+          <UserBox username='Jessica' notification={notificationHome}/>
+          <ResultBox percentage={percentageCompleted} circleWidth={150}/>
           <section>{renderRecentQuizzes()}</section>
           <section>{renderPopularQuizzes(POPULAR_QUIZ_MAXRENDER_NUMBER)}</section>
         </div>;
