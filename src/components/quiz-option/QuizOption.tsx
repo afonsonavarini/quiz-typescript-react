@@ -1,7 +1,6 @@
 import { FunctionComponent, useEffect, useState } from "react";
 import './QuizOption.style.css'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircle } from '@fortawesome/free-solid-svg-icons';
+import WrongIcon from '../../assets/icons/wrong-icon.svg'
 
 interface QuizOptionProps {
   text: string;
@@ -28,10 +27,10 @@ const QuizOption: FunctionComponent<QuizOptionProps> = ({ text, isCorrect, onCli
   return (
     <div className={`quizoption-main ${(isCorrect && showCorrectAnswer && !clicked) ? 'highlight-correct' : ''} ${clicked ? (isCorrect ? 'correct' : 'incorrect') : ''}`} onClick={handleClick}>
       <div className={`${clicked ? (isCorrect ? 'select-correct' : 'select-incorrect') : 'circle-option'}`}>
-        {clicked && !isCorrect && <p className="circle-content">X</p>}
+        {clicked && !isCorrect && <img src={WrongIcon} className="wrong-icon"></img>}
         {clicked && isCorrect && showCorrectAnswer}
       </div>
-      <span>{text}</span>
+      <span className="option-text">{text}</span>
     </div>
   );
 }

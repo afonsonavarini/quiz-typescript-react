@@ -1,6 +1,7 @@
-import React, { FunctionComponent, useState } from "react";
+import React, { FunctionComponent, useEffect, useState } from "react";
 import './UserBox.style.css';
 import BellImage from '../../assets/bell.svg';
+import NoNotificationBellImage from '../../assets/bell-no-notifications.svg'
 
 interface UserBoxProps {
     username: string;
@@ -9,21 +10,22 @@ interface UserBoxProps {
 
 const UserBox: FunctionComponent<UserBoxProps> = ({ username, notification }) => {
     const [showNotification, setShowNotification] = useState(false);
+    const [bellIconImage, setBellIconImage] = useState(NoNotificationBellImage)
+    const [notificationLocal, setNotificationLocal] = useState(notification)
 
     function toggleNotification(): void {
-        // Adiciona ou remove a classe 'highlighted' da imagem do sino
-        const bellImage = document.querySelector('.bell-image');
+        const bellImage = document.querySelector('.bell-image') as HTMLImageElement;;
         if (bellImage) {
             if (showNotification) {
-                bellImage.classList.remove('highlighted');
+                bellImage.src = NoNotificationBellImage
             } else {
-                bellImage.classList.add('highlighted');
+                setBellIconImage(BellImage)
             }
         }
     
-        // Alterna o estado showNotification
         setShowNotification(!showNotification);
     }
+    
 
     return (
         <div className="user-box-main">
@@ -37,8 +39,8 @@ const UserBox: FunctionComponent<UserBoxProps> = ({ username, notification }) =>
             <div className="user-container-part-two">
                 <div className="bell-container" onClick={toggleNotification}>
                     <img
-                        src={BellImage}
-                        className={showNotification || (notification && notification.length > 0) ? "bell-image highlighted" : "bell-image"}
+                        src={showNotification || (notification) ? BellImage : NoNotificationBellImage}
+                        className="bell-image"
                         alt="Bell"
                     />
                 </div>

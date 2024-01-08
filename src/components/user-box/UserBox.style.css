@@ -6,6 +6,9 @@
     justify-content: space-between;
     font-size: 20px;
     color: rgb(150, 150, 150);
+    margin-bottom: 20px;
+    margin-top: 10px;
+    
 }
 
 .user-circle-img {
@@ -50,11 +53,7 @@
     height: 30px;
 }
 .bell-image:hover {
-    padding: 30%;
-    width: 100%;
-    height: 100%;
-    background-color: #cce9ff;
-    border-radius: 50%;
+    cursor: pointer;
 }
 
 .highlighted {

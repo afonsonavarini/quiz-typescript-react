@@ -1,7 +1,5 @@
 import { FunctionComponent, ReactNode} from "react";
 import './QuizContainer.style.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 interface QuizContainerProps {
   children: ReactNode;
@@ -10,7 +8,7 @@ interface QuizContainerProps {
 
 const QuizContainer: FunctionComponent<QuizContainerProps> = ({children, onClick}) => {
     if (!Array.isArray(children) || children.length < 2) {
-        console.error("QuizContainer requer pelo menos dois elementos children.");
+        console.error("QuizContainer requires at least two elements.");
         return null;
       }
     

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Nunito&display=swap');
 
 body {
   margin: 0;
@@ -6,7 +6,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   background-color: rgb(46, 46, 46);
 }
 
@@ -19,7 +19,7 @@ body {
 .phone-screen-size {
   width: 375px;
   height: 900px;
-  background-color: #f8f8f8;
+  background-color: #FFFFFF;
   display: flex;
   flex-direction: column;
 }

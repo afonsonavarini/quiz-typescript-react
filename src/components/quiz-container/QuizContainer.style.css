@@ -5,7 +5,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 10px 24px 54px 0px #33333308;
+    box-shadow: 10px 24px 54px 0px rgba(51, 51, 51, 0.03);
+
     margin-bottom: 10px;
 }
 

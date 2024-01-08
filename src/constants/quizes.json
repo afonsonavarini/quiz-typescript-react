@@ -5,10 +5,12 @@
         "title": "Technology",
         "quiz_rating": "4.8",
         "quiz_icon": "https://i.imgur.com/07uO0sd.png",
+        "main_bg_color": "#FFE3BE",
         "main_color": "#FFE3BE",
         "answered": 0,
         "duration": 5,
         "completed": false,
+        "timestamp": "",
         "questions": [
           {
             "question": "Who is the CEO of Tesla?",
@@ -29,10 +31,12 @@
         "title": "Sport",
         "quiz_rating": "4.8",
         "quiz_icon": "https://i.imgur.com/dhcIbkS.png",
+        "main_bg_color": "#FFE3BE",
         "main_color": "#E8ECFD",
         "answered": 0,
         "duration": 5,
         "completed": false,
+        "timestamp": "",
         "questions": [
           {
             "question": "Which country won the FIFA World Cup in 2018?",
@@ -53,10 +57,12 @@
         "title": "Music",
         "quiz_rating": "4.8",
         "quiz_icon": "https://i.imgur.com/PMqOmNd.png",
+        "main_bg_color": "#FFE3BE",
         "main_color": "#F5E4E4",
         "answered": 0,
         "duration": 5,
         "completed": false,
+        "timestamp": "",
         "questions": [
           {
             "question": "Which legendary musician is often refered as King of Rock 'n' Roll?",
@@ -76,11 +82,13 @@
         "id": 3,
         "title": "Reading",
         "quiz_rating": "4.8",
-        "quiz_icon": "https://i.imgur.com/yTGXUkg.png",
-        "main_color": "#21BDCA",
+        "quiz_icon": "https://i.imgur.com/pUVHQnk.png",
+        "main_bg_color": "#FFE3BE",
+        "main_color": "#ACFAF5",
         "answered": 0,
         "duration": 5,
         "completed": false,
+        "timestamp": "",
         "questions": [
           {
             "question": "Which house was Harry Potter sorted into at Hogwarts?",
@@ -100,11 +108,13 @@
         "id": 4,
         "title": "Speaking",
         "quiz_rating": "4.8",
-        "quiz_icon": "https://i.imgur.com/aQ6z0Ut.png",
-        "main_color": "#5372E7",
+        "quiz_icon": "https://i.imgur.com/WNV0z6I.png",
+        "main_bg_color": "#FFE3BE",
+        "main_color": "#CEDAFC",
         "answered": 0,
         "duration": 5,
         "completed": false,
+        "timestamp": "",
         "questions": [
           {
             "question": "Which author wrote the play 'Romeo and Juliet'?",
@@ -119,15 +129,6 @@
             "correct_answer": "George Washington"
           }
         ]
-      }
-    ],
-
-    "recentQuizes": [
-      {
-        "id": 0
-      },
-      {
-        "id": 1
       }
     ]
   }

@@ -1,6 +1,3 @@
-
-
-
 export function formatDuration(duration: number): string {
     const hours: number = Math.floor(duration / 60);
     const remainingMinutes: number = duration % 60;
@@ -18,78 +15,49 @@ export const formatTime = (seconds: number): string => {
     return `${formattedMinutes}:${formattedSeconds}`;
   };
 
-export const percentageCalculation = (answered: number, questions: number): number => {
-   const result = answered ? ((answered / questions) * 100) : 0;
+export const percentageCalculation = (percentageOf: number, totalNumber: number): number => {
+   const result = percentageOf ? ((percentageOf / totalNumber) * 100) : 0;
    return result
 }
 
-// export const saveAnsweredQuestionJSON = (answers: number, quiz_index: number): void => {
-//   const data = fs.readFileSync('src/constants/quizes.json', 'utf8');
 
-//   const jsonData = JSON.parse(data);
-
-//   const quizChange = jsonData.quizes[quiz_index];
-
-//   quizChange.answered = answers;
-
-//   const quizesUpdated = JSON.stringify(jsonData, null, 2);
-
-//   fs.writeFileSync('src/constants/quizes.json', quizesUpdated);
-
-// }
-
-export const loadJSON = async () => {
-  try {
-    const apiUrl = `https://json.extendsclass.com/bin/e48f43d26d12`; // Substitua pela sua URL real
-    const response = await fetch(apiUrl);
-    
-    if (!response.ok) {
-      console.error('Erro ao obter dados da API:', response.statusText);
-      return;
-    }
-
-    const jsonData = await response.json();
-
-    return jsonData;
-  }
-
-  catch (error) {
-    console.log('Erro ao processar loading do JSON:', error)
-  }
+export function orderQuizzesByTimestamp(data: {
+  id: number;
+  title: string;
+  quiz_rating: string;
+  quiz_icon: string;
+  main_bg_color: string;
+  main_color: string;
+  answered: number;
+  duration: number;
+  completed: boolean;
+  timestamp: number;
+  questions: {
+    question: string;
+    options: string[];
+    question_img: string;
+    correct_answer: string;
+  }[];
+}[]): {
+  id: number;
+  title: string;
+  quiz_rating: string;
+  quiz_icon: string;
+  main_bg_color: string;
+  main_color: string;
+  answered: number;
+  duration: number;
+  completed: boolean;
+  timestamp: number;
+  questions: {
+    question: string;
+    options: string[];
+    question_img: string;
+    correct_answer: string;
+  }[];
+}[] {
+  return data
+    .filter(item => typeof item.timestamp === 'number')
+    .sort((a, b) => a.timestamp - b.timestamp)
+    .reverse();
 }
-
-// export const saveAnsweredQuestionJSON = async (answers: number, quizId: number) => {
-//   try {
-//     const jsonData = await loadJSON();
-
-//     const apiUrl = `https://json.extendsclass.com/bin/e48f43d26d12`;
-
-//     const updatedQuizzes = jsonData.quizzes.map((quiz: any) => {
-//       if (quiz.id === quizId) {
-//         quiz.answered = answers;
-//         console.log(quiz)
-//       }
-//       return quiz;
-//     });
-
-
-//     const updatedData = { ...jsonData, quizzes: updatedQuizzes };
-
-//     // Atualiza o estado localmente (opcional, dependendo de como você deseja lidar com isso)
-
-//     // Enviando alterações de volta para a API
-//     const saveResponse = await fetch(apiUrl, {
-//       method: 'PUT', // Use 'PUT' para atualizações, ajuste conforme necessário
-//       headers: {
-//         'Content-Type': 'application/json',
-//       },
-//       body: JSON.stringify(updatedData),
-//     });
-
-//     if (!saveResponse.ok) {
-//       console.error('Erro ao salvar dados:', saveResponse.statusText);
-//     }
-//   } catch (error) {
-//     console.error('Erro ao processar alterações:', error);
-//   }
-// };

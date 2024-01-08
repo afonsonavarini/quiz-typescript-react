@@ -8,28 +8,27 @@ import QuizContainer from '../../components/quiz-container/QuizContainer';
 import QuestionIcon from'../../assets/icons/question.svg';
 import ClockIcon from '../../assets/icons/clock.svg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { formatDuration } from '../../constants/functions';
 import Button from '../../components/button/Button';
-import {faArrowLeft, faEllipsisV, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import {faEllipsisV} from '@fortawesome/free-solid-svg-icons';
 
-import { loadDatabaseFile, lerDados} from '../../constants/firebase';
+import {updateAnswersQuiz} from '../../constants/firebase';
 
 
 const Details: React.FC = () => {
 
   const location = useLocation();
   const navigate = useNavigate()
-  const iconColor = "#FFF6EA"
+  const ICON_COLOR = "#FFF6EA"
   
   const quiz = location.state?.quiz;
-
-
+  const RESET_QUIZ_VALUE = 0;
 
   const duration = formatDuration(quiz.duration)
 
-  function onIconClick() {
+  async function onIconClick() {
     localStorage.setItem("notification", `${quiz.title} quiz reset.`);
+    await updateAnswersQuiz(quiz, RESET_QUIZ_VALUE, "/quizzes")
     navigate('/');
   }
 
@@ -40,7 +39,6 @@ const Details: React.FC = () => {
   async function handleButtonClick(quiz: object){
     navigate('/quiz', { state: { quiz } });
   };
-
 
   return <div className='phone-screen-size container'>
           <PageHeader
@@ -56,12 +54,12 @@ const Details: React.FC = () => {
               questions={quiz.questions.length}
               quiz_rating={quiz.quiz_rating}
               quiz_icon={quiz.quiz_icon}
-              main_color={quiz.main_color}
+              main_bg_color={quiz.main_bg_color}
           />
           <h3 className='details-screen-title'>Brief explanation about this quiz</h3>
           <QuizContainer>
             <div className="info-side">
-              <div className="logo-container-details" style={{backgroundColor: iconColor}}>
+              <div className="logo-container-details" style={{backgroundColor: ICON_COLOR}}>
                 <img src={QuestionIcon} alt="Questions Icon" />
               </div>
               <div className="quiz-info">
@@ -73,7 +71,7 @@ const Details: React.FC = () => {
           </QuizContainer>
           <QuizContainer>
             <div className="info-side">
-              <div className="logo-container-details" style={{backgroundColor: iconColor}}>
+              <div className="logo-container-details" style={{backgroundColor: ICON_COLOR}}>
                 <img src={ClockIcon} alt="Questions Icon" />
               </div>
               <div className="quiz-info">
@@ -90,7 +88,6 @@ const Details: React.FC = () => {
             <li>Click submit if you are sure you want to complete all the quizzes</li>
           </ul>
           <Button text='Get Started' onClick={() => handleButtonClick(quiz)}></Button>
-
   </div>
 };
 

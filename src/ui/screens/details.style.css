@@ -1,5 +1,6 @@
 .details-screen-title {
-    font-size: 20px;
+    font-size: 16px;
+    color: #333333;
 }
 
 
@@ -14,21 +15,23 @@
 }
 
 .details-screen-tips {
+    font-family: 'Nunito', 'sans-serif';
     padding-left: 20px;
     padding-right: 20px;
-    font-size: 16px;  
-    margin-bottom: 5vh;
+    width: 80%;
+    font-size: 14px;  
+    margin-bottom: 10vh;
 }
 
 .details-screen-tips li {
     margin-bottom: 20px;
-    color: #999999;
+    color: #666666;
     
 }
 
 .details-screen-tips li::marker {
     margin-bottom: 20px;
-    color: black;
+    color: #333333;
 }
 
 .icon-container {

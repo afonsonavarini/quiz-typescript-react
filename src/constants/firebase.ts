@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, push, get, update, set } from "firebase/database";
+import { getDatabase, ref, get, update, set } from "firebase/database";
 
 const firebaseConfig = {
     apiKey: "AIzaSyAo7WsUwEBInvYQIwxd1Mi8t00WCdxDMOY",
@@ -15,94 +15,80 @@ const firebaseConfig = {
 const firebaseApp = initializeApp(firebaseConfig);
 const database = getDatabase(firebaseApp);
 
-async function lerDados(caminho: string): Promise<any> {
-  const referencia = ref(database, caminho);
+async function readData(databasePath: string): Promise<any> {
+  const reference = ref(database, databasePath);
 
   try {
-    const snapshot = await get(referencia);
+    const snapshot = await get(reference);
     if (snapshot.exists()) {
       return snapshot.val();
     } else {
-      console.error("Nenhum dado encontrado no caminho:", caminho);
+      console.error("No data was found in:", databasePath);
       return null;
     }
-  } catch (erro) {
-    console.error("Erro ao ler dados:", erro);
-    throw erro;
+  } catch (error) {
+    console.error("Error retrieving data:", error);
+    throw error;
   }
 }
 
 async function loadDatabaseFile(databasePath: string) {
   try {
-    const dados = await lerDados(databasePath);
+    const dados = await readData(databasePath);
     return dados
-  } catch (erro) {
-    console.error("Erro ao ler dados:", erro);
+  } catch (error) {
+    console.error("Error retrieving data:", error);
   }
 }
 
-async function updateRecentQuizzes(quizNovo: any, caminhoNoBancoDeDados: string): Promise<void> {
-  const referencia = ref(database, caminhoNoBancoDeDados);
+async function updateQuizTimestamp(quiz: any, databasePath: string): Promise<void> {
+  const reference = ref(database, databasePath);
 
   try {
-    // Obter a lista atual
-    const listaAtual = await get(referencia);
+    const currentArray = await get(reference);
 
-    const quizNovoUpdated = { id: quizNovo.id};
+    const newArray = currentArray.exists() ? currentArray.val() : [];
 
-    // Verificar se a lista existe
-    const novaLista = listaAtual.exists() ? listaAtual.val() : [];
+    const quizIndex = newArray.findIndex((item: any) => item.id === quiz.id);
 
-    // Verificar se o item já existe na lista com base no ID
-    const indexExistente = novaLista.findIndex((item: any) => item.id === quizNovo.id);
+    const newDate = Date.now();
 
-    if (indexExistente !== -1) {
-      console.log('ja existe')
-      return;
-    }
+    if (quizIndex !== -1) {
+      newArray[quizIndex].timestamp = newDate;
 
-    novaLista.unshift(quizNovoUpdated);
-
-    // Remover o último item, se houver mais do que um item na lista
-    if (novaLista.length > 1) {
-      novaLista.pop();
-    }
-
-    // Atualizar a lista no banco de dados
-    await set(referencia, novaLista);
-  } catch (erro) {
-    console.error("Erro ao adicionar novo quiz:", erro);
-    throw erro;
-  }
-}
-
-async function updateAnswersQuiz(quiz: any, numeroAcertos: number, caminhoNoBancoDeDados: string): Promise<void> {
-  const referencia = ref(database, caminhoNoBancoDeDados);
-
-  try {
-    // Obter a lista atual
-    const listaAtual = await get(referencia);
-
-    // Verificar se a lista existe
-    const novaLista = listaAtual.exists() ? listaAtual.val() : [];
-
-    // Encontrar o índice do quiz na lista baseado no ID
-    const indiceQuiz = novaLista.findIndex((item: any) => item.id === quiz.id);
-
-    // Verificar se o quiz foi encontrado na lista
-    if (indiceQuiz !== -1) {
-      // Atualizar o campo "answered" do quiz com o número de acertos
-      novaLista[indiceQuiz].answered = numeroAcertos;
-
-      // Atualizar a lista no banco de dados
-      await set(referencia, novaLista);
+      await update(reference, { [quizIndex + '/timestamp']: newDate });
     } else {
-      console.log("Quiz não encontrado na lista. Nenhuma alteração feita.");
+      console.log("Quiz not found. No changes were made.");
     }
-  } catch (erro) {
-    console.error("Erro ao atualizar número de acertos:", erro);
-    throw erro;
+  } catch (error) {
+    console.error("Error updating quiz's timestamp:", error);
+    throw error;
   }
 }
 
-export { database, lerDados, loadDatabaseFile, updateRecentQuizzes, updateAnswersQuiz};
+
+async function updateAnswersQuiz(quiz: any, numeroAcertos: number, databasePath: string): Promise<void> {
+  const reference = ref(database, databasePath);
+
+  try {
+    const currentArray = await get(reference);
+
+    const newArray = currentArray.exists() ? currentArray.val() : [];
+
+    const quizIndex = newArray.findIndex((item: any) => item.id === quiz.id);
+
+    if (quizIndex !== -1) {
+      newArray[quizIndex].answered = numeroAcertos;
+
+      await set(reference, newArray);
+    } else {
+      console.log("Quiz not found. No changes were made.");
+    }
+  } catch (error) {
+    console.error("Error updating answer count:", error);
+    throw error;
+  }
+
+}
+
+export { database, readData, loadDatabaseFile, updateAnswersQuiz, updateQuizTimestamp};

@@ -20,7 +20,7 @@ const ResultBox: FunctionComponent<ResultBoxProps> = ({percentage, circleWidth})
                 <CircularProgressBar percentage={percentage} circleWidth={circleWidth}></CircularProgressBar>
             </div>
             <div className="feedback-container">
-                <h3 className="feedback-title">Good Result!</h3>
+                <p className="feedback-title">Good Result!</p>
                 <p className="feedback-description">Share your achievement with you friend</p>
             </div>
         </div>

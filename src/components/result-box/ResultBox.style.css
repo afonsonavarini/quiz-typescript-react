@@ -8,10 +8,6 @@
     margin-bottom: -20px;
   }
 
-.result-box-content:hover {
-    background-color: #cce9ff;
-}
-
 .result-box-content {
     display: flex;
     align-items: center;
@@ -73,13 +69,17 @@
   }
 
   .feedback-title {
+    font-family: 'Montserrat', 'sans-serif';
+    font-weight: 600;
+    font-size: 16px;
     margin-bottom: -20px;
     
   }
 
   .feedback-description {
-    width: 80%;
-    font-size: 14px;
+    font-family: 'Nunito', sans-serif;
+    width: 60%;
+    font-size: 12px;
   }
 
   .circular-container {

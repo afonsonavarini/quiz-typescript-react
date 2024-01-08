@@ -1,4 +1,7 @@
 .recent-quiz-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
     width: 140px;
     height: 140px;
     background-color: #FAFAFD;
@@ -20,15 +23,21 @@
     border-radius: 10px;
 }
 
+.icon-container {
+    margin-left: -8px;
+}
+
 .recent-quiz-info {
     width: 110%;
 }
 
 .recent-quiz-icon {
-    width: 50%;
-    height: 50%;
+    width: 60%;
+    height: 60%;
 }
 
 .quiz-title {
+    font-family: 'Montserrat', 'sans-serif';
+    font-size: 14px;
     font-weight: bold;
 }

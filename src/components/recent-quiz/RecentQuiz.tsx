@@ -9,14 +9,15 @@ interface RecentQuizProps {
     answered: number;
     questions: number;
     mainColor: string;
+    onClick?: () => void;
   }
 
 
-const RecentQuiz: FunctionComponent<RecentQuizProps> = ({title, quiz_icon, answered, questions, mainColor}) => {
+const RecentQuiz: FunctionComponent<RecentQuizProps> = ({title, quiz_icon, answered, questions, mainColor, onClick}) => {
 
     const percentage = percentageCalculation(answered, questions)
 
-    return <div className="recent-quiz-main">
+    return <div className="recent-quiz-main" onClick={onClick}>
         <div className="icon-container">
             <div className="icon-box">
                 <img src={quiz_icon} alt={`${title} logo`} className="recent-quiz-icon"/>

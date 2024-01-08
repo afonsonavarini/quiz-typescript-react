@@ -5,6 +5,8 @@
     height: 50px;
     background-color: #fff;
     border-radius: 10px;
+    box-shadow: 20px 24px 54px 0px #3333330D;
+    margin-top: -50px
 }
 
 .quizoption-main:hover {
@@ -26,9 +28,15 @@
     height: 25px;
     margin-left: 20px;
     background-color: transparent;
-    border: 1px solid #999999;
+    border: 1px solid #D4D4D4;
     border-radius: 50%;
-    margin-right: 10px;
+    margin-right: 20px;
+  }
+
+  .option-text {
+    color: #333333;
+    font-family: 'Montserrat', 'sans-serif';
+    font-weight: 500;
   }
 
   .select-incorrect {
@@ -42,7 +50,7 @@
     background-color: #FF6967;
     border: 1px solid #FF6967;
     border-radius: 50%;
-    margin-right: 10px;
+    margin-right: 20px;
   }
 
   .select-correct {
@@ -56,7 +64,7 @@
     background-color: rgb(0, 163, 0);
     border: 1px solid rgb(0, 163, 0);
     border-radius: 50%;
-    margin-right: 10px;
+    margin-right: 20px;
     box-sizing: border-box;
   }
 
@@ -65,7 +73,7 @@
   }
 
   .highlight-correct {
-    border: 2px solid rgb(0, 163, 0);
+    border: 1px solid #219653;
     box-sizing: border-box;
   }
 
