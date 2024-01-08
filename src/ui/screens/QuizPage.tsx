@@ -44,7 +44,7 @@ const percentage = percentageCalculation(correctAnswers, quiz.questions.length)
       setCorrectValidation(false)
     } else {
         const currentPercentageCompleted = percentageCalculation(correctAnswers, quiz.questions.length)
-        localStorage.setItem("notification", `${quiz.title} ${currentPercentageCompleted}% done last try.`);
+        localStorage.setItem("notification", `You got ${currentPercentageCompleted}% on ${quiz.title} last attempt.`);
         navigate('/');
     }
   };

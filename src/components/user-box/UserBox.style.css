@@ -74,7 +74,7 @@
     right: 50%;
     top: 50%;
     transform: translate(50%, -50%);
-    width: 300px;
+    width: 350px;
     height: 200px;
     border-radius: 20px;
     background-color: rgb(255, 255, 255);
@@ -87,10 +87,10 @@
 
 .notification-info {
 
-    font-size: 19px;
+    font-size: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 90%;
+    width: 100%;
 
 }
