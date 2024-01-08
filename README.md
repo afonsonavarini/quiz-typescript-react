@@ -1,6 +1,6 @@
 # Projeto de Quiz com React e TypeScript
 
-### Afonso Navarini
+### Feito por Afonso Navarini
 Bem-vindo ao projeto de Quiz, uma aplicação web construída utilizando React e TypeScript. Este projeto permite aos usuários participar de quizzes, visualizar resultados e explorar quizzes populares e recentes.
 
 ## Descrição
