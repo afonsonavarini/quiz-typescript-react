@@ -1,46 +1,42 @@
-# Getting Started with Create React App
+# Projeto de Quiz com React e TypeScript
+### Feito por Afonso Navarini
+Bem-vindo ao projeto de Quiz, uma aplicação web construída utilizando React e TypeScript. Este projeto permite aos usuários participar de quizzes, visualizar resultados e explorar quizzes populares e recentes.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Descrição
 
-## Available Scripts
+O projeto é uma aplicação web de Quiz desenvolvida em React com TypeScript. Ele oferece as seguintes funcionalidades:
 
-In the project directory, you can run:
+- Participação em quizzes e visualização de resultados.
+- Exploração de quizzes recentes e populares.
+- Utilização de dados armazenados em um banco de dados no Firebase.
+- Carregamento dinâmico de ícones dos quizzes do Imgur.
+- Feedback de desempenho.
+- Notificações sobre progresso.
 
-### `npm start`
+## Instalação
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Para rodar o projeto em sua máquina local, siga os passos abaixo:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+1. **Clone o repositório:**
+   ```bash
+   git clone https://github.com/seu-usuario/nome-do-repositorio.git
+   cd nome-do-repositorio
+   ```
 
-### `npm test`
+2. **Instale as dependências:**
+   ```bash
+   npm install
+   ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+3. **Execute o projeto:**
+   ```bash
+   npm start
+   ```
+   O projeto estará disponível em `http://localhost:3000` por padrão.
 
-### `npm run build`
+## Observações
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Os dados dos quizzes estão armazenados em um banco de dados Firebase. Quaisquer problemas de conexão, favor entrar em contato.
+- Os ícones dos quizzes são carregados dinamicamente do Imgur. Certifique-se de que a conexão com a internet esteja ativa durante o uso da aplicação, em caso de problema com o carregamento dos ícones, favor notificar.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Sinta-se à vontade para explorar, modificar e contribuir para o projeto! Se você tiver dúvidas ou encontrar problemas, fique à vontade para abrir uma issue no repositório. Divirta-se!
