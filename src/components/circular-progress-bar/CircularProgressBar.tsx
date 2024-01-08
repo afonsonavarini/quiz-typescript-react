@@ -24,9 +24,8 @@ const CircularProgressBar: FunctionComponent<PageHeaderProps> = ({percentage, ci
             strokeWidth="12px"
             r={radius}
             className="circle-background"
-        
           />
-<circle
+          <circle
             cx={circleWidth/2}
             cy={circleWidth/2}
             strokeWidth="12px"
@@ -37,7 +36,6 @@ const CircularProgressBar: FunctionComponent<PageHeaderProps> = ({percentage, ci
                 strokeDashoffset: dashOffset,
             }}
             transform={`rotate(-90 ${circleWidth / 2} ${circleWidth / 2})`}
-        
           />
 
           <text x="50%" y="50%" dy="0.3em" textAnchor="middle" className="percentage-text">{percentage * -1}%</text>

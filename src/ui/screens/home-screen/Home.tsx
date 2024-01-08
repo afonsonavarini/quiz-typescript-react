@@ -1,39 +1,47 @@
 import React, {useEffect, useState} from 'react';
 import './home.style.css';
-import UserBox from '../../components/user-box/UserBox';
-import ResultBox from '../../components/result-box/ResultBox';
-import RecentQuiz from '../../components/recent-quiz/RecentQuiz';
-import PopularQuiz from '../../components/popular-quiz/PopularQuiz';
-import { useNavigate } from 'react-router-dom';
+import UserBox from '../../../components/user-box/UserBox';
+import ResultBox from '../../../components/result-box/ResultBox';
+import RecentQuiz from '../../../components/recent-quiz/RecentQuiz';
+import PopularQuiz from '../../../components/popular-quiz/PopularQuiz';
+import { useAppNavigation } from '../../../hooks/useAppNavigation';
+import { Quiz } from '../../../constants/interfaces';
 
-import { loadDatabaseFile, updateQuizTimestamp } from '../../constants/firebase';
-import { orderQuizzesByTimestamp, percentageCalculation } from '../../constants/functions';
+import { loadDatabaseFile, updateQuizTimestamp } from '../../../constants/firebase';
+import { orderQuizzesByTimestamp, percentageCalculation } from '../../../constants/functions';
+import { useNotification } from '../../../hooks/useNotification';
 
 const POPULAR_QUIZ_MAXRENDER_NUMBER = 3;
 const RECENT_QUIZ_MAXRENDER_NUMBER = 2;
 
 const Home: React.FC = () => {
-  const [displayedQuizes, setDisplayedQuizes] = useState<any[]>([]);
+  const [displayedQuizes, setDisplayedQuizes] = useState<Quiz[]>([]);
   const [percentageCompleted, setPercentageCompleted] = useState(0)
   const [notificationHome, setNotificationHome] = useState('')
 
-  const navigate = useNavigate();
+  const {navigateTo} = useAppNavigation();
+  const {removeNotification} = useNotification();
+
+  const notification = localStorage.getItem("notification");
+  const USERNAME = "Jessica"
+
+  const quizzesOrderedByTimestamp = orderQuizzesByTimestamp(displayedQuizes);
 
   useEffect(() => {
-    const notification = localStorage.getItem("notification");
+    
     if (notification) {
       setNotificationHome(notification)
-      localStorage.removeItem("notification");
+      removeNotification()
     }
-  }, []);
+  }, [notification]);
 
 
   useEffect(() => {
     async function loadQuizes() {
         const databaseQuizzesData = await loadDatabaseFile('/quizzes');
         setDisplayedQuizes(databaseQuizzesData);
-        const totalAnswered = databaseQuizzesData.reduce((acc: any, quiz: any) => acc + quiz.answered, 0);
-        const totalQuestions = databaseQuizzesData.reduce((acc: any, quiz: any) => acc + quiz.questions.length, 0);
+        const totalAnswered = databaseQuizzesData.reduce((acc: number, quiz: Quiz) => acc + quiz.answered, 0);
+        const totalQuestions = databaseQuizzesData.reduce((acc: number, quiz: Quiz) => acc + quiz.questions.length, 0);
 
         const totalFinished = percentageCalculation(totalAnswered, totalQuestions)
         setPercentageCompleted(totalFinished * -1)
@@ -41,8 +49,12 @@ const Home: React.FC = () => {
   
     loadQuizes();
   }, []);
-  
-  const quizzesOrderedByTimestamp = orderQuizzesByTimestamp(displayedQuizes);
+
+  async function handleQuizClick(quiz: Quiz) {
+    await updateQuizTimestamp(quiz, "/quizzes")
+    navigateTo('/details', quiz);
+  };
+
 
   const renderRecentQuizzes = (maxRender: number) => {
   
@@ -66,12 +78,6 @@ const Home: React.FC = () => {
       </div>
     );
   };
-
-  async function handleQuizClick(quiz: object) {
-    await updateQuizTimestamp(quiz, "/quizzes")
-    navigate('/details', { state: { quiz } });
-  };
-
 
   const renderPopularQuizzes = (maxRender: number) => {
     const quizzesNotInRecentQuizzes = quizzesOrderedByTimestamp.slice(-maxRender).reverse();
@@ -99,10 +105,12 @@ const Home: React.FC = () => {
   };
 
   return <div className='phone-screen-size container'>
-          <UserBox username='Jessica' notification={notificationHome}/>
-          <ResultBox percentage={percentageCompleted} circleWidth={150}/>
-          <section>{renderRecentQuizzes(RECENT_QUIZ_MAXRENDER_NUMBER)}</section>
-          <section>{renderPopularQuizzes(POPULAR_QUIZ_MAXRENDER_NUMBER)}</section>
+            <div className="home-content">
+              <UserBox username={USERNAME} notification={notificationHome}/>
+              <ResultBox percentage={percentageCompleted} circleWidth={150}/>
+              <section>{renderRecentQuizzes(RECENT_QUIZ_MAXRENDER_NUMBER)}</section>
+              <section>{renderPopularQuizzes(POPULAR_QUIZ_MAXRENDER_NUMBER)}</section>
+            </div>
         </div>;
 };
 

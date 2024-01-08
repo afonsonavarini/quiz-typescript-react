@@ -12,7 +12,7 @@ interface TimerProps {
 
 const Timer: FunctionComponent<TimerProps> = ({time, onTimeExpired}) => {
 
-    const [remainingTime, setRemainingTime] = useState(time * 60);
+    const [remainingTime, setRemainingTime] = useState<number>(time * 60);
 
     useEffect(() => {
       const timerInterval = setInterval(() => {
@@ -30,7 +30,7 @@ const Timer: FunctionComponent<TimerProps> = ({time, onTimeExpired}) => {
     return <div className="timer-main">
         <div className="timer-content">
             <img src={TimerIcon} alt="Clock Icon" id="timer-icon"></img>
-            <p className="time-box">{formatTime(remainingTime)}</p>
+            <span>{formatTime(remainingTime)}</span>
         </div>
     </div>
 }

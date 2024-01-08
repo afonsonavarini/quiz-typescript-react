@@ -2,7 +2,6 @@
 
 body {
   margin: 0;
-  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -18,7 +17,7 @@ body {
 
 .phone-screen-size {
   width: 375px;
-  height: 900px;
+  height: 875px;
   background-color: #FFFFFF;
   display: flex;
   flex-direction: column;

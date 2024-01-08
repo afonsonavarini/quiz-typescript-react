@@ -1,7 +1,5 @@
 import { FunctionComponent} from "react";
 import './PopularQuiz.style.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
 import QuizContainer from "../quiz-container/QuizContainer";
 import StarRating from '../../assets/icons/star-rating.png'
 

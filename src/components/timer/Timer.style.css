@@ -7,6 +7,8 @@
     border-radius: 20px;
     width: 100px;
     height: 35%;
+    font-family: 'Nunito', 'sans-serif';
+    font-weight: 400;
     font-size: 16px;
     color: #21BDCA;;
     
@@ -18,7 +20,8 @@
 }
 
 .timer-content {
+    width: 80%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
 }

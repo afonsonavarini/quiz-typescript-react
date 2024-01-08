@@ -8,6 +8,10 @@ interface ResultBoxProps {
   }
 
 const ResultBox: FunctionComponent<ResultBoxProps> = ({percentage, circleWidth}) => {
+
+    const feedbackTitle = (percentage * -1) < 50 ? "Keep Improving!" : "Good Result";
+    console.log('porcentagem:'+ percentage)
+
     return <div className="result-box-main">
         <div className="circle" id="first-left-circle">
             <div className="center" id="first-left-center"></div>
@@ -20,7 +24,7 @@ const ResultBox: FunctionComponent<ResultBoxProps> = ({percentage, circleWidth})
                 <CircularProgressBar percentage={percentage} circleWidth={circleWidth}></CircularProgressBar>
             </div>
             <div className="feedback-container">
-                <p className="feedback-title">Good Result!</p>
+                <p className="feedback-title">{feedbackTitle}</p>
                 <p className="feedback-description">Share your achievement with you friend</p>
             </div>
         </div>

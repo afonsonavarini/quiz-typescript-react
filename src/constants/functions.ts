@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 export function formatDuration(duration: number): string {
     const hours: number = Math.floor(duration / 60);
     const remainingMinutes: number = duration % 60;
@@ -30,7 +32,6 @@ export function orderQuizzesByTimestamp(data: {
   main_color: string;
   answered: number;
   duration: number;
-  completed: boolean;
   timestamp: number;
   questions: {
     question: string;
@@ -47,7 +48,6 @@ export function orderQuizzesByTimestamp(data: {
   main_color: string;
   answered: number;
   duration: number;
-  completed: boolean;
   timestamp: number;
   questions: {
     question: string;

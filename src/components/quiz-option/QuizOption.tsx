@@ -11,7 +11,7 @@ interface QuizOptionProps {
 }
 
 const QuizOption: FunctionComponent<QuizOptionProps> = ({ text, isCorrect, onClick, showCorrectAnswer, resetStyles }) => {
-  const [clicked, setClicked] = useState(false);
+  const [clicked, setClicked] = useState<boolean>(false);
 
   const handleClick = () => {
     setClicked(true);

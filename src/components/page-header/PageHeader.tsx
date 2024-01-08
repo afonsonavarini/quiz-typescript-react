@@ -1,6 +1,6 @@
 import { FunctionComponent, ReactNode } from "react";
 import './PageHeader.style.css'
-import {faArrowLeft, faEllipsisV, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import {faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface PageHeaderProps {

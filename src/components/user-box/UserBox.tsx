@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect, useState } from "react";
+import { FunctionComponent, useState } from "react";
 import './UserBox.style.css';
 import BellImage from '../../assets/bell.svg';
 import NoNotificationBellImage from '../../assets/bell-no-notifications.svg'
@@ -9,17 +9,13 @@ interface UserBoxProps {
 }
 
 const UserBox: FunctionComponent<UserBoxProps> = ({ username, notification }) => {
-    const [showNotification, setShowNotification] = useState(false);
-    const [bellIconImage, setBellIconImage] = useState(NoNotificationBellImage)
-    const [notificationLocal, setNotificationLocal] = useState(notification)
+    const [showNotification, setShowNotification] = useState<boolean>(false);
 
     function toggleNotification(): void {
         const bellImage = document.querySelector('.bell-image') as HTMLImageElement;;
         if (bellImage) {
             if (showNotification) {
                 bellImage.src = NoNotificationBellImage
-            } else {
-                setBellIconImage(BellImage)
             }
         }
     
