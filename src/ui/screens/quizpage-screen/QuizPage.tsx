@@ -107,7 +107,9 @@ const percentage = percentageCalculation(correctAnswers, quiz.questions.length)
                   <div className='question-options'>
                     {renderQuestionOptions()}
                   </div>
-                  <div className='quizpage-buttons-container'>
+                </div>    
+              </div>
+              <div className='quizpage-buttons-container'>
                     <div className="previous-button">
                         <Button text='Previous' onClick={handlePreviousQuestion} outlined buttonWidthPercentage={95}></Button>
                     </div>
@@ -115,8 +117,6 @@ const percentage = percentageCalculation(correctAnswers, quiz.questions.length)
                         <Button text='Next' onClick={handleNextQuestion} buttonWidthPercentage={95}></Button>
                     </div>
                   </div>
-                </div>    
-              </div>
          </div>
 
 };

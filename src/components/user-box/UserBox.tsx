@@ -16,6 +16,9 @@ const UserBox: FunctionComponent<UserBoxProps> = ({ username, notification }) =>
         if (bellImage) {
             if (showNotification) {
                 bellImage.src = NoNotificationBellImage
+                bellImage.className = "bell-image"              
+            } else {
+                bellImage.className = "bell-image highlighted"
             }
         }
     

@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Quiz } from "./interfaces";
 
 export function formatDuration(duration: number): string {
     const hours: number = Math.floor(duration / 60);
@@ -23,39 +23,7 @@ export const percentageCalculation = (percentageOf: number, totalNumber: number)
 }
 
 
-export function orderQuizzesByTimestamp(data: {
-  id: number;
-  title: string;
-  quiz_rating: string;
-  quiz_icon: string;
-  main_bg_color: string;
-  main_color: string;
-  answered: number;
-  duration: number;
-  timestamp: number;
-  questions: {
-    question: string;
-    options: string[];
-    question_img: string;
-    correct_answer: string;
-  }[];
-}[]): {
-  id: number;
-  title: string;
-  quiz_rating: string;
-  quiz_icon: string;
-  main_bg_color: string;
-  main_color: string;
-  answered: number;
-  duration: number;
-  timestamp: number;
-  questions: {
-    question: string;
-    options: string[];
-    question_img: string;
-    correct_answer: string;
-  }[];
-}[] {
+export function orderQuizzesByTimestamp(data: Quiz[]): Quiz[] {
   return data
     .filter(item => typeof item.timestamp === 'number')
     .sort((a, b) => a.timestamp - b.timestamp)
