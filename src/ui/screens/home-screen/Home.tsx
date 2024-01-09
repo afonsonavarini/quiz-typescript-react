@@ -16,8 +16,8 @@ const RECENT_QUIZ_MAXRENDER_NUMBER = 2;
 
 const Home: React.FC = () => {
   const [displayedQuizes, setDisplayedQuizes] = useState<Quiz[]>([]);
-  const [percentageCompleted, setPercentageCompleted] = useState(0)
-  const [notificationHome, setNotificationHome] = useState('')
+  const [percentageCompleted, setPercentageCompleted] = useState<number>(0)
+  const [notificationHome, setNotificationHome] = useState<string>('')
 
   const {navigateTo} = useAppNavigation();
   const {removeNotification} = useNotification();
