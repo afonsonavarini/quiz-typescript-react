@@ -87,7 +87,6 @@ const Home: React.FC = () => {
         <p className='section-title'>Popular Quiz</p>
         <div className='popular-quizes-box'>
           {quizzesNotInRecentQuizzes.map((quiz, index) => (
-            console.log(quiz),
 
             <PopularQuiz
               key={index}
