@@ -38,5 +38,6 @@ Para rodar o projeto em sua máquina local, siga os passos abaixo:
 
 - Os dados dos quizzes estão armazenados em um banco de dados Firebase. Quaisquer problemas de conexão, favor entrar em contato.
 - Os ícones dos quizzes são carregados dinamicamente do Imgur. Certifique-se de que a conexão com a internet esteja ativa durante o uso da aplicação, em caso de problema com o carregamento dos ícones, favor notificar.
+- Os arquivos JSON localizados na pasta raíz são apenas para debug, não estão sendo utilizados como dados locais.
 
 Sinta-se à vontade para explorar, modificar e contribuir para o projeto! Se você tiver dúvidas ou encontrar problemas, fique à vontade para abrir uma issue no repositório. Divirta-se!
