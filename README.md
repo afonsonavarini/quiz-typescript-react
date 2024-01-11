@@ -19,7 +19,7 @@ Para rodar o projeto em sua máquina local, siga os passos abaixo:
 
 1. **Clone o repositório:**
    ```bash
-   git clone https://github.com/seu-usuario/nome-do-repositorio.git
+   git clone https://github.com/afonsonavarini/quiz-typescript-react.git
    cd nome-do-repositorio
    ```
 
