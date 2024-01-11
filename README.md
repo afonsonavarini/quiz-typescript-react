@@ -20,7 +20,7 @@ Para rodar o projeto em sua máquina local, siga os passos abaixo:
 1. **Clone o repositório:**
    ```bash
    git clone https://github.com/afonsonavarini/quiz-typescript-react.git
-   cd nome-do-repositorio
+   cd quiz-typescript-react
    ```
 
 2. **Instale as dependências:**
